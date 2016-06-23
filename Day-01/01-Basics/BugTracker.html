@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Bug Tracker</title>
+	<style>
+		#olBugList{
+			width: 500px;
+			list-style: none;
+		}
+		li{
+			margin-bottom: 5px;
+			border : 1px solid gray;
+			background-color: #e7e7e7;
+			padding: 5px;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		.closed{
+			color : red;
+			text-decoration: line-through;
+			font-style: italic;
+		}
+	</style>
+	<script>
+		
+
+	</script>
+</head>
+<body>
+	<h1>Bug Tracker</h1>
+	<section class="content">
+		<label for="">Bug :</label>
+		<input type="text" name="" id="txtBugName">
+		<input type="button"  id="btnAdd" value="Add New">
+		<input type="button" value="Remove Closed" id="btnRemoveClosed">
+		<ol id="olBugList">
+			<li>Object reference not set</li>
+			<li class="closed">User action not recognized</li>
+		</ol>
+	</section>
+</body>
+</html>
