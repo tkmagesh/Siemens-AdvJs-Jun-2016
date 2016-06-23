@@ -27,24 +27,58 @@
 		var olBugList = null,
 			txtBugName = null;
 
+		function bind(target, eventObj){
+			for(var event in eventObj)
+				target.addEventListener(event, eventObj[event]);
+		}
+
 		function init(){
 			var btnAdd = document.getElementById("btnAdd");
 			btnAdd.addEventListener("click", onBtnAddClick);
 
+			var btnRemoveClosed = document.getElementById("btnRemoveClosed");
+			btnRemoveClosed.addEventListener("click", onBtnRemoveClosedClick);
+
 			txtBugName = document.getElementById("txtBugName");
 			olBugList = document.getElementById("olBugList");
+
+			bind(olBugList, {
+				click : onBugClick,
+				mouseover : onBugMouseOver,
+				mouseout : onBugMouseOut
+			});
+
+			/*olBugList.addEventListener("click", onBugClick);
+			olBugList.addEventListener("mouseover", onBugMouseOver);
+*/		}
+
+		function onBugMouseOver(evt){
+			
+			evt.target.style.fontSize = 16;
+			//console.log(evt.target.style.fontSize);
+		}
+
+		function onBugMouseOut(evt){
+			//console.log(evt);
+			evt.target.style.fontSize = '';
 		}
 
 		function onBtnAddClick(){
 			var newBugName = txtBugName.value;
 			var newBug = document.createElement("li");
 			newBug.innerHTML = newBugName;
-			newBug.addEventListener("click", onBugClick);
 			olBugList.appendChild(newBug);
 		}
 
 		function onBugClick(evt){
+			console.dir(evt);
 			evt.target.classList.toggle("closed");
+		}
+
+		function onBtnRemoveClosedClick(){
+			var closedBugs = document.getElementsByClassName("closed");
+			for(var i=closedBugs.length-1; i>=0; i--)
+				closedBugs[i].remove();
 		}
 
 	</script>

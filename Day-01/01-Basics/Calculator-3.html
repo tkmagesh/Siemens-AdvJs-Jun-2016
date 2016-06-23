@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Calculator</title>
+	<style>
+		.error {
+			border : 1px solid red;
+			background-color: lightpink;
+		}
+	</style>
+	<script>
+		var calculator = {
+			add : function(n1, n2){
+				return n1 + n2;
+			},
+			subtract : function(n1, n2){
+				return n1 - n2;
+			},
+			multiply : function(n1, n2){
+				return n1 * n2;
+			},
+			divide : function(n1, n2){
+				return n1 / n2;
+			},
+		};
+
+		window.addEventListener("DOMContentLoaded", init);
+		function init(){
+			var operationMap = {
+				'+' : 'add',
+				'-' : 'subtract',
+				'*' : 'multiply',
+				'/' : 'divide'
+			};
+			var btnCalculate = document.getElementById("btnCalculate");
+			btnCalculate.addEventListener("click", triggerCalculate);
+
+			var operation = document.getElementById("operation");
+			operation.addEventListener("change", triggerCalculate);
+
+			function triggerCalculate(){
+				var txtNumber1 = document.getElementById("txtNumber1"),
+					txtNumber2 = document.getElementById("txtNumber2"),
+					n1 = parseInt(txtNumber1.value),
+					n2 = parseInt(txtNumber2.value),
+					operation = document.getElementById("operation").value,
+					error = document.getElementById("error");
+
+				if (isNaN(n1)){
+					error.innerHTML = 'Invalid input!'
+					txtNumber1.style.border = "2px solid red";
+					txtNumber1.focus();
+					return;
+				}
+				if (isNaN(n2)){
+					error.innerHTML = 'Invalid input!'
+					txtNumber2.style.border = "2px solid red";
+					txtNumber2.focus();
+					return;
+				}
+				txtNumber1.style.border = txtNumber2.style.border  = '';				
+				error.innerHTML = '';
+				
+				var result = calculator[operationMap[operation]](n1,n2);
+				
+				var divResult = document.getElementById("divResult");
+				divResult.innerHTML = result;
+
+			}
+		}
+
+	</script>
+</head>
+<body>
+	<h1>Calculator</h1>
+	<hr>
+	<input type="text" name="" id="txtNumber1">
+	<select name="" id="operation">
+		<option value="+">add</option>
+		<option value="-">subtract</option>
+		<option value="*">multiply</option>
+		<option value="/">divide</option>
+	</select>
+	<input type="text" name="" id="txtNumber2">
+	<input type="button" value="Calculate" id="btnCalculate">
+	<div id="divResult">[Result]</div>
+	<div id="error"></div>
+</body>
+</html>
