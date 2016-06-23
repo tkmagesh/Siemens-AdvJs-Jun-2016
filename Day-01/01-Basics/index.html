@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS Bascis</title>
+	<script>
+		window.addEventListener("DOMContentLoaded", init);
+		function init(){
+			var btnToggle = document.body.children[1]
+			
+			var h1 = document.body.children[0]
+			
+			btnToggle.addEventListener("click", function(){
+			    if (h1.style.display === 'none'){
+			        h1.style.display = 'block';
+			    } else {
+			        h1.style.display = 'none';
+			    }
+			})
+		}
+	</script>
+</head>
+<body>
+	<h1>Siemens - Research</h1>
+	<input type="button" value="Toggle H1" id="btnToggleH1" />
+	<p id="intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur dolor sequi, molestiae numquam error. Sapiente perferendis modi ex nihil error saepe quam officiis! Atque, at explicabo nesciunt dolorum, odio ducimus.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, accusamus iusto at. Tempore facilis fugit aperiam quas molestias accusantium deleniti maxime esse minus magni possimus, nostrum, nihil consequatur quisquam minima.</p>
+	<br>
+	<p id="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum delectus, aliquid. Error tempora saepe, maxime ut aut nemo cupiditate rem porro veritatis mollitia deserunt fugiat doloremque nam dolor, vero dolore.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam porro cumque repellat facere id ad, cupiditate laudantium delectus nobis veniam fuga corrupti ut, magni vel dolore vero deserunt, amet officiis!Lorem ipsum dolor sit amet, consectetur adipisicing elit. At nesciunt dicta porro tenetur numquam, corrupti. Ducimus eum officia consequatur minima iure reiciendis totam quo ullam adipisci, enim alias possimus dolore!</p>
+</body>
+</html>
