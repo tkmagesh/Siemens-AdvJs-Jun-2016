@@ -23,7 +23,29 @@
 		}
 	</style>
 	<script>
-		
+		window.addEventListener("DOMContentLoaded", init);
+		var olBugList = null,
+			txtBugName = null;
+
+		function init(){
+			var btnAdd = document.getElementById("btnAdd");
+			btnAdd.addEventListener("click", onBtnAddClick);
+
+			txtBugName = document.getElementById("txtBugName");
+			olBugList = document.getElementById("olBugList");
+		}
+
+		function onBtnAddClick(){
+			var newBugName = txtBugName.value;
+			var newBug = document.createElement("li");
+			newBug.innerHTML = newBugName;
+			newBug.addEventListener("click", onBugClick);
+			olBugList.appendChild(newBug);
+		}
+
+		function onBugClick(evt){
+			evt.target.classList.toggle("closed");
+		}
 
 	</script>
 </head>
