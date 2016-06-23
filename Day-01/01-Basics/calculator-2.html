@@ -3,6 +3,60 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Calculator</title>
+	<script>
+		window.addEventListener("DOMContentLoaded", init);
+		function init(){
+			var btnCalculate = document.getElementById("btnCalculate");
+			btnCalculate.addEventListener("click", triggerCalculate);
+
+			var operation = document.getElementById("operation");
+			operation.addEventListener("change", triggerCalculate);
+
+			function triggerCalculate(){
+				var txtNumber1 = document.getElementById("txtNumber1"),
+					txtNumber2 = document.getElementById("txtNumber2"),
+					n1 = parseInt(txtNumber1.value),
+					n2 = parseInt(txtNumber2.value),
+					operation = document.getElementById("operation").value,
+					error = document.getElementById("error");
+
+				if (isNaN(n1)){
+					error.innerHTML = 'Invalid input!'
+					txtNumber1.style.border = "2px solid red";
+					txtNumber1.focus();
+					return;
+				}
+				if (isNaN(n2)){
+					error.innerHTML = 'Invalid input!'
+					txtNumber2.style.border = "2px solid red";
+					txtNumber2.focus();
+					return;
+				}
+				txtNumber1.style.border = txtNumber2.style.border  = '';				
+				error.innerHTML = '';
+				
+				var result = 0;
+				switch(operation){
+					case  'add' :
+						result = n1 + n2;
+						break;
+					case  'subtract' :
+						result = n1 - n2;
+						break;
+					case  'multiply' :
+						result = n1 * n2;
+						break;
+					case  'divide' :
+						result = n1 / n2;
+						break;
+				}
+				var divResult = document.getElementById("divResult");
+				divResult.innerHTML = result;
+
+			}
+		}
+
+	</script>
 </head>
 <body>
 	<h1>Calculator</h1>
@@ -17,5 +71,6 @@
 	<input type="text" name="" id="txtNumber2">
 	<input type="button" value="Calculate" id="btnCalculate">
 	<div id="divResult">[Result]</div>
+	<div id="error"></div>
 </body>
 </html>
