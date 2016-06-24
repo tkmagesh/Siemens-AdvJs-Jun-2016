@@ -1,7 +1,21 @@
-create a 'spinner' object
-var spinner = ......
+//create a 'spinner' object
+function spinnerFactory(){
+   var counter = 0;
 
-the spinner object should exhibit the following:
+   function up(){
+     return ++counter;
+   }
+   function down(){
+      return --counter;
+   }
+   return {
+      up : up,
+     down : down
+   }
+}
+var spinner = spinnerFactory();
+
+//the spinner object should exhibit the following:
 
 spinner.up(); //=> 1
 spinner.up(); //=> 2
