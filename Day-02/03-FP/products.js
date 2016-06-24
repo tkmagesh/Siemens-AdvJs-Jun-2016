@@ -134,6 +134,85 @@ describe("Sorting", function(){
 	
 });
 
+describe("Filtering", function(){
+	describe("Filter products by category 1", function(){
+		function filterProductsByCategory1(){
+			var result = [];
+			for(var i=0; i<products.length; i++)
+				if (products[i].category === 1)
+					result.push(products[i]);
+			return result;
+		}
+		var category1Products = filterProductsByCategory1();
+		console.table(category1Products);
+
+	});
+
+	describe("Any list by any criteria", function(){
+		function filter(list, criteriaFn){
+			var result = [];
+			for(var i=0; i<list.length; i++)
+				if (criteriaFn(list[i]))
+					result.push(list[i]);
+			return result;
+		};
+
+		var category1ProductCriteria = function(product){
+			return product.category === 1;
+		};
+
+		describe("All category 1 products", function(){
+			var category1Products = filter(products, category1ProductCriteria);
+			console.table(category1Products);
+		});
+
+		var costlyProductCriteria = function(product){
+			return product.cost >= 100;
+		};
+
+		describe("All costly products [ cost >= 100] ", function(){
+			var costlyProducts = filter(products, costlyProductCriteria);
+			console.table(costlyProducts);
+		});
+
+		/*var nonCategory1ProductCriteria = function(product){
+			return product.category !== 1;
+		};*/
+
+		/*var nonCategory1ProductCriteria = function(product){
+			return !category1ProductCriteria(product);
+		};*/
+
+		/*var affordableProductCriteria = function(product){
+			return product.cost < 100;
+		}*/
+
+		/*var affordableProductCriteria = function(product){
+			return !costlyProductCriteria(product);
+		}*/
+
+		function negate(criteriaFn){
+			return function(){
+				return !criteriaFn.apply(this, arguments);
+			};
+		}
+
+		var nonCategory1ProductCriteria = negate(category1ProductCriteria);
+		
+		describe("non category 1 products", function(){
+			var nonCategory1Products = filter(products, nonCategory1ProductCriteria);
+			console.table(nonCategory1Products);
+		});
+
+		var affordableProductCriteria = negate(costlyProductCriteria);
+		describe("Affordable products", function(){
+			var affordableProducts = filter(products, affordableProductCriteria);
+			console.table(affordableProducts);
+		});
+
+	})
+})
+
 
 
 
