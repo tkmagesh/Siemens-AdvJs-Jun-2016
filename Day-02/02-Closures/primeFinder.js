@@ -76,3 +76,43 @@ function memoize(algoFn){
 		return cache[n];
 	}
 }
+
+var isOddOrEven = memoize(function checkOddEven(n){
+	console.log("processing - ", n);
+	return n % 2 === 0 ? : 'even' :'odd';
+})
+
+var isPrime = memoize(function checkPrime(n){
+	console.log("processing - ", n);
+	if (n <= 3) 
+		return true;
+		
+	for( var i=2; i<= (n/2); i++)
+		if (n % i === 0) 
+			return false;
+			
+	return true;
+});
+
+function memoize(algoFn){
+	var cache = {};
+	
+	return function (){
+		var key = JSON.stringify(arguments);
+		if (typeof cache[key] === 'undefined')
+			cache[key] = algoFn.apply(this, arguments);
+		return cache[key];
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
