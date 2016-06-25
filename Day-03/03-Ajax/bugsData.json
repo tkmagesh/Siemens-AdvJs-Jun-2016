@@ -1,0 +1,7 @@
+{
+	"bugs" : [
+		{"id" : 1, "name" : "Object reference not found", "isClosed" : false},
+		{"id" : 2, "name" : "Server communication failure", "isClosed" : true},
+		{"id" : 3, "name" : "User actions not recognized", "isClosed" : false},
+	]
+}
