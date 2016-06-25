@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS 3.0 Demo</title>
+	<link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
+	<style>
+		#content{
+			height : 300px;
+			width: 300px;
+			line-height: 300px;
+			font-family: 'Bungee Shade', cursive;
+			font-size: 22pt;
+			text-align: center;
+			margin-left: 200px;
+			margin-top: 100px;
+			border : 4px solid black;
+			border-radius: 10px;
+			color : white;
+			background : -webkit-linear-gradient(top left, yellow 0%, red 50%, green 100%);
+			background : -moz-linear-gradient(top left, yellow 0%, red 50%, green 100%);
+			background : -ms-linear-gradient(top left, yellow 0%, red 50%, green 100%);
+			background : -o-linear-gradient(top left, yellow 0%, red 50%, green 100%);
+			background : linear-gradient(top left, yellow 0%, red 50%, green 100%);
+
+			box-shadow: 0px 0px 0px 5px gray, 0px 0px 0px 10px #e7e7e7;
+			text-shadow: 2px 2px 2px gray;
+			
+			-webkit-transition : -webkit-transform 0.5s;
+			
+		}
+		#content:hover{
+			-webkit-transform: rotate(45deg) scale(0.5,0.5);
+		}
+	</style>
+</head>
+<body>
+	<div id="content">Siemens</div>
+</body>
+</html>
