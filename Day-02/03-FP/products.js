@@ -16,8 +16,9 @@ min
 max
 sum
 avg
-aggregate
-transform
+aggregate (reduce)
+transform (map)
+forEach (each)
 */
 
 function describe(title, fn){
@@ -211,16 +212,38 @@ describe("Filtering", function(){
 		});
 
 	})
-})
+});
 
+describe("GroupBy", function(){
+	function groupBy(list, keySelectorFn){
+		var result = {};
+		for(var i=0; i<list.length; i++){
+			var key = keySelectorFn(list[i]);
+			result[key] = result[key] || [];
+			result[key].push(list[i]);
+		}
+		return result;
+	}
 
+	function printGroup(groupedObj){
+		for(var key in groupedObj)
+			describe("Key - " + key, function(){
+				console.table(groupedObj[key]);
+			});
+	}
+	describe("Products by category", function(){
+		var categoryKeySelectorFn = function(product){
+			return product.category;
+		};
+		var productsByCategory = groupBy(products, categoryKeySelectorFn);
+		printGroup(productsByCategory);
+	});
 
-
-
-
-
-
-
-
-
-
+	describe("Products by cost", function(){
+		var costKeySelectorFn = function(product){
+			return product.cost < 100 ? "affordable" : "costly";
+		};
+		var productsByCost = groupBy(products,costKeySelectorFn);
+		printGroup(productsByCost);
+	})
+});
