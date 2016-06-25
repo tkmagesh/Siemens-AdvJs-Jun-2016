@@ -17,8 +17,11 @@
 			worker.addEventListener('message', onMessageFromWorker)
 		}
 		function onMessageFromWorker(evtArg){
-			if (evtArg.data === 'done'){
+			var data = evtArg.data;
+			if (data.type === 'done'){
 				displayMessage("Work Completed..!");
+			} else if (data.type === 'progress'){
+				document.getElementById("workerProgress").value = data.percentCompleted;
 			} else {
 				console.log("unknown message from worker ", evtArg);
 			}
@@ -40,5 +43,8 @@
 	<input type="text" name="" id="">
 	<input type="button" value="Do Work" id="btnDoWork">
 	<div id="divMessages"></div>
+	<div>
+		<progress id="workerProgress" min="0" max="100" value="0"></progress>
+	</div>
 </body>
 </html>
